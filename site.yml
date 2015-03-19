@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    sudo: True
+    vars:
+      wbench_user: cumulus
+    roles:
+      - { role: users, tags: 'user' }
+      - { role: services, tags: 'services' }
+      - { role: network, tags: 'network' }
+      - { role: pkgs, tags: 'pkgs' }
+      - { role: cldemo, tags: 'cldemo' }
+
