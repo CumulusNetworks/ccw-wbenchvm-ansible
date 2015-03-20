@@ -2,5 +2,5 @@
   - hosts: all
     sudo: True
     roles:
-      - { role: users, tags: 'user' }
+      - { role: users, tags: 'users' }
 
