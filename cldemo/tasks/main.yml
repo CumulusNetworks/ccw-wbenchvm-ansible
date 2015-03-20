@@ -1,0 +1,25 @@
+- name: install cldemo apt-key
+  apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
+
+- name: add cldemo sources list
+  copy: src=cldemo.list dest=/etc/apt/sources.list.d/cldemo.list
+
+- name: install brightbox ruby apt-key
+  apt_key: keyserver=keyserver.ubuntu.com id=C3173AA6
+
+- name: add brightbox sources list
+  template: src=brightbox.list dest=/etc/apt/sources.list.d/brightbox.list
+
+- name: run apt-get update
+  apt: update_cache=yes
+
+- name: install cldemo base packages
+  apt: name={{ item }}
+  with_items:
+    - ruby2.1
+    - bundler
+    - cldemo-wbench-base
+    - git
+
+- name: copy ansible user authorized_keys to cumulus user ssh authorized_keys
+  command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys
