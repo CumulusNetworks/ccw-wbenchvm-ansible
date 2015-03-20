@@ -1,0 +1,31 @@
+- name: install useful user packages
+  apt: name={{item}}
+  sudo: yes
+  with_items:
+    - vim-nox
+    - tree
+
+- name: install useful vimrc
+  copy: src=vimrc dest={{ ansible_env.HOME }}/.vimrc
+
+- name: create directories for vim pathogen
+  file: path={{ansible_env.HOME}}/{{item}} state=directory
+  with_items:
+    - ".vim"
+    - ".vim/bundle"
+    - ".vim/autoload"
+
+- name: install vim pathogen
+  get_url: url="https://raw.githubusercontent.com/tpope/vim-pathogen/v2.3/autoload/pathogen.vim"
+           dest="{{ ansible_env.HOME}}/.vim/autoload/pathogen.vim"
+
+- name: install useful vim pathogen packages
+  git: repo=http://github.com/{{item}}
+       dest="{{ ansible_env.HOME}}/.vim/bundle/{{ item | basename }}"
+  with_items:
+    - chase/vim-ansible-yaml.git
+    - scrooloose/syntastic.git
+    - scrooloose/nerdtree.git
+    - jistr/vim-nerdtree-tabs.git
+
+

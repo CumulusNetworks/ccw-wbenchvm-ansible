@@ -1,0 +1,8 @@
+- name: install cldemo-tests as cumulus user
+  git: repo=https://github.com/CumulusNetworks/cldemo-tests
+       dest=/home/cumulus/cldemo-tests
+
+- name: bundle install in cldemo-tests directory as cumulus user
+  command: bundle install --path vendor/bundle
+  args:
+      chdir: /home/cumulus/cldemo-tests
