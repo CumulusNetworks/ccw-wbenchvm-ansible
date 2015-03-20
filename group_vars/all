@@ -1,5 +1,6 @@
 # networking
 wbench_eth1_ip: '192.168.0.1'
 wbench_eth1_mask: '255.255.255.0'
-dns_servers: 'lab.local cwb.cumulusnetworks.com'
+dns_search1: 'lab.local'
+dns_search2: 'cwb.cumulusnetworks.com'
 
