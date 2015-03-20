@@ -13,3 +13,5 @@ address {{ wbench_eth1_ip }}
 netmask {{ wbench_eth1_mask }}
 dns-search {{ dns_search1 }} {{ dns_search2 }}
 dns-nameservers 127.0.0.1
+post-up /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+post-down /sbin/iptables -t nat -F POSTROUTING
