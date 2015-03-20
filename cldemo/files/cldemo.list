@@ -1,0 +1,2 @@
+deb http://cldemo.cumulusnetworks.com/stable cldemo workbench
+deb http://cldemo.cumulusnetworks.com/3rdparty-stable 3rdparty workbench
