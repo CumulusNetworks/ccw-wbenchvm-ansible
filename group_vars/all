@@ -11,4 +11,3 @@ dns_search2: 'cwb.cumulusnetworks.com'
 
 ntp_server: '1.cumulusnetworks.pool.ntp.org'
 
-

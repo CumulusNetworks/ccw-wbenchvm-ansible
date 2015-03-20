@@ -11,5 +11,5 @@ iface eth0 inet dhcp
 iface eth1 inet static
 address {{ wbench_eth1_ip }}
 netmask {{ wbench_eth1_mask }}
-dns-search {{ dns_servers }}
+dns-search {{ dns_search1 }} {{ dns_search2 }}
 dns-nameservers 127.0.0.1
