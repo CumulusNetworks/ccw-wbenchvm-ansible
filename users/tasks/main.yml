@@ -2,10 +2,11 @@
   user: name="{{wbench_user}}"
         password="6$rounds=40000$SrhUWyi2RIe5Z2o9$sv3DBTeMYTTGMNz6NC1gEsERWbirDcSPiyrNkCd0bJae5mMmgfqDKv1jo7Ta/eZCp9gF9X6SUbEa8Pz.Gp2LU/"
         update_password=on_create
+        generate_ssh_key=yes
 
 - name: set wbench user user ability to run sudo with a passwd
-  copy: content="{{wbench_user}} ALL=NOPASSWD:ALL"
-        dest="/etc/sudoers.d/{{wbench_user}}"
+  copy: content="{{wbench_user}} ALL=(ALL) NOPASSWD:ALL"
+        dest="/etc/sudoers.d/10_{{wbench_user}}"
         validate="/usr/sbin/visudo -cf %s"
         mode=0440
 
