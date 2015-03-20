@@ -4,4 +4,5 @@
     roles:
       - { role: users, tags: 'users' }
       - { role: network, tags: 'network' }
+      - { role: services, tags: 'services' }
 

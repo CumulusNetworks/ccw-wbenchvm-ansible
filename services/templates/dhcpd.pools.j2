@@ -1,0 +1,18 @@
+# DHCP Pools
+#################################
+# localpool
+#################################
+subnet {{ wbench_eth1_network }} netmask {{ wbench_eth1_mask }} {
+  pool
+  {
+    range {{ wbench_dhcp_range_start }} {{ wbench_dhcp_range_end }};
+  }
+
+  option subnet-mask {{ wbench_eth1_mask }};
+  option routers {{ wbench_eth1_ip }};
+  filename = "pxe/pxelinux.0";
+  next-server {{ wbench_eth1_ip }};
+  option default-url ="http://{{ wbench_eth1_ip}}/onie-installer";
+  option cumulus-provision-url "http://{{ wbench_eth1_ip}}/provision.sh";
+}
+
