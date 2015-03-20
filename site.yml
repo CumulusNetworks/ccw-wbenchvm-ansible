@@ -1,0 +1,6 @@
+---
+  - hosts: all
+    sudo: True
+    roles:
+      - { role: users, tags: 'users' }
+
