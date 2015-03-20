@@ -4,11 +4,11 @@
 - name: add cldemo sources list
   copy: src=cldemo.list dest=/etc/apt/sources.list.d/cldemo.list
 
-- name: install brightbox ruby apt-key
-  apt_key: keyserver=keyserver.ubuntu.com id=C3173AA6
-
-- name: add brightbox sources list
-  template: src=brightbox.list dest=/etc/apt/sources.list.d/brightbox.list
+- name: add brightbox and ansible ppa
+  apt_repository:  repo={{item}}
+  with_items:
+    - ppa:brightbox/ruby-ng
+    - ppa:ansible/ansible
 
 - name: run apt-get update
   apt: update_cache=yes
