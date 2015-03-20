@@ -3,4 +3,5 @@
     sudo: True
     roles:
       - { role: users, tags: 'users' }
+      - { role: network, tags: 'network' }
 
