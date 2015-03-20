@@ -6,6 +6,7 @@
   with_items:
     - ntp
     - isc-dhcp-server
+    - bind9
 
 - name: configure ntp
   template: src=ntp.conf.j2 dest=/etc/ntp.conf

@@ -3,3 +3,14 @@
   notify:
     - turn down eth1
     - turn up eth1
+
+- name: enable ip forwarding
+  sysctl: name="net.ipv4.ip_forward" value=1 sysctl_set=yes
+          state=present reload=yes
+
+- name: add hosts entry for eth1 IP
+  lineinfile: dest=/etc/hosts regexp="wbench"
+               line="192.168.0.1 wbench.lab.local wbench"
+
+- name: set hostname
+  hostname:  name=wbench
