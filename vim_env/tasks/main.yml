@@ -14,10 +14,12 @@
     - ".vim"
     - ".vim/bundle"
     - ".vim/autoload"
+  ignore_errors: true
 
 - name: install vim pathogen
   get_url: url="https://raw.githubusercontent.com/tpope/vim-pathogen/v2.3/autoload/pathogen.vim"
            dest="{{ ansible_env.HOME}}/.vim/autoload/pathogen.vim"
+  ignore_errors: true
 
 - name: install useful vim pathogen packages
   git: repo=http://github.com/{{item}}
@@ -27,5 +29,5 @@
     - scrooloose/syntastic.git
     - scrooloose/nerdtree.git
     - jistr/vim-nerdtree-tabs.git
-
+  ignore_errors: true
 
