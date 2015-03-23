@@ -1,12 +1,6 @@
 - name: install iptables. Default LXC image doesn't seem to have this
   apt: name=iptables state=present
 
-- name: configure /etc/network/interfaces
-  template: src=interfaces.j2 dest=/etc/network/interfaces
-  notify:
-    - turn down eth1
-    - turn up eth1
-
 - name: enable ip forwarding
   sysctl: name="net.ipv4.ip_forward" value=1 sysctl_set=yes
           state=present reload=yes
@@ -17,3 +11,9 @@
 
 - name: set hostname
   hostname:  name=wbench
+
+- name: add iptables NAT statement to rc.local
+  lineinfile: dest=/etc/rc.local regexp="iptables"
+              insertbefore="exit 0"
+              line="/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+
