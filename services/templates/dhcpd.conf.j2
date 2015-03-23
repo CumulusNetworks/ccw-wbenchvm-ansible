@@ -1,0 +1,29 @@
+# ----------
+# dhcpd.conf
+# ----------
+authoritative;
+default-lease-time 3600;
+max-lease-time 86400;
+log-facility daemon;
+
+# ----------
+# Options
+# ----------
+option domain-name "{{ dns_search1 }}";
+option domain-name-servers {{ wbench_eth1_ip }};
+option ntp-servers {{ ntp_server }};
+option fqdn.no-client-update on;  # set the "O" and "S" flag bits
+option fqdn.rcode2 255;
+option pxegrub code 150 = text;
+option cumulus-provision-url code 239 = text;
+
+# ----------
+# Dynamic DNS Updates
+# ----------
+ddns-update-style none;
+
+# ----------
+# Extra Configurations
+# ----------
+include "/etc/dhcp/dhcpd.pools";
+include "/etc/dhcp/dhcpd.hosts";

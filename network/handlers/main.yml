@@ -1,0 +1,9 @@
+# For some reason with Ubuntu 14.04 /etc/init.d/networking reload, force-reload
+# doesn't do anything useful. I need it to run ifdown/ifup on the private
+# interface
+- name: turn down eth1
+  command: /sbin/ifdown eth1
+
+- name: turn up eth1
+  command: /sbin/ifup eth1
+

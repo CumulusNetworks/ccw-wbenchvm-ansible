@@ -1,0 +1,14 @@
+---
+  - hosts: all
+    sudo: True
+    roles:
+      - { role: users, tags: 'users' }
+      - { role: network, tags: 'network' }
+      - { role: services, tags: 'services' }
+      - { role: cldemo, tags: 'cldemo' }
+  - hosts: all
+    remote_user: cumulus
+    roles:
+      - { role: cldemo_tests, tags: 'cldemo_tests' }
+      - { role: vim_env, tags: 'vim_env' }
+
