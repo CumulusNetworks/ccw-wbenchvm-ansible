@@ -1,0 +1,15 @@
+// Created by Ansible
+zone "0.168.192.in-addr.arpa" {
+  type master;
+  file "/etc/bind/zones/db.0.168.192.in-addr.arpa";
+  allow-transfer {
+  };
+
+};
+zone "lab.local" {
+  type master;
+  file "/etc/bind/zones/db.lab.local";
+  allow-transfer {
+  };
+
+};

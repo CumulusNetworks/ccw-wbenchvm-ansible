@@ -18,3 +18,19 @@
 - name: configure dhcpd.hosts
   template: src=dhcpd.hosts.j2 dest=/etc/dhcp/dhcpd.hosts
   notify: restart dhcp
+
+- name: update named.conf.locals bind file
+  copy: src=named.conf.local dest=/etc/bind/named.conf.local
+  notify: restart bind9
+
+- name: create bind9 zone directory
+  file: path=/etc/bind/zones state=directory
+  notify: restart bind9
+
+- name: install db.lab.local zone
+  template: src=db.lab.local.j2 dest=/etc/bind/zones/db.lab.local
+  notify: restart bind9
+
+- name: install reverse db.lab.local zone file
+  template: src=db.0.168.192.in-addr.arpa.j2 dest=/etc/bind/zones/db.0.168.192.in-addr.arpa
+  notify: restart bind9

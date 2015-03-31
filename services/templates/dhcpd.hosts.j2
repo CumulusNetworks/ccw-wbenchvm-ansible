@@ -1,6 +1,6 @@
 # Configured by Ansible
 # static DHCP hosts
-{% for hostname, dhcpattr in dhcphost_hash.iteritems() %}
+{% for hostname, dhcpattr in wbench_hosts.iteritems() %}
 host {{hostname}} {
   hardware ethernet {{ dhcpattr.mac }};
   fixed-address {{ dhcpattr.ip }};
