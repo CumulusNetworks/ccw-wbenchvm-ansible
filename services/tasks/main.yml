@@ -15,5 +15,6 @@
   template: src=dhcpd.pools.j2 dest=/etc/dhcp/dhcpd.pools
   notify: restart dhcp
 
-- name: touch dhcpd.hosts file. Not clear how this will be managed
-  file: path=/etc/dhcp/dhcpd.hosts state=touch
+- name: configure dhcpd.hosts
+  template: src=dhcpd.hosts.j2 dest=/etc/dhcp/dhcpd.hosts
+  notify: restart dhcp
