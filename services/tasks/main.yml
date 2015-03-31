@@ -4,13 +4,8 @@
 - name: install service packages
   apt: name={{item}} state=present
   with_items:
-    - ntp
     - isc-dhcp-server
     - bind9
-
-- name: configure ntp
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  notify: restart ntp
 
 - name: configure dhcpd.conf
   template: src=dhcpd.conf.j2 dest=/etc/dhcp/dhcpd.conf
