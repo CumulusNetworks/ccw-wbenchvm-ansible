@@ -5,6 +5,10 @@
       - { role: users, tags: 'users' }
       - { role: network, tags: 'network' }
       - { role: services, tags: 'services' }
+      # list extra packages and misc tasks here
+      # if change need to happen as cumulus user,
+      # put it in the next host definition
+      - { role: extras , tags: 'extras' }
       - { role: cldemo, tags: 'cldemo' }
   - hosts: all
     remote_user: cumulus
