@@ -11,7 +11,4 @@ dns_search2: 'cwb.cumulusnetworks.com'
 
 ntp_server: '1.cumulusnetworks.pool.ntp.org'
 
-wbench_hosts:
-  leaf1:
-    mac: '00:11:22:33:44:55'
-    ip: '192.168.0.3'
+wbench_hosts: {}
