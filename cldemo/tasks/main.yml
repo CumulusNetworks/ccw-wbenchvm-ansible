@@ -26,6 +26,7 @@
     - bundler
     - cldemo-wbench-base
     - git
+    - ruby2.1-dev
 
 - name: copy ansible user authorized_keys to cumulus user ssh authorized_keys. needed for prepare_cumulus_env role
   command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys
