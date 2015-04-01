@@ -32,8 +32,8 @@
 - name: set default ruby to 2.1
   command: ruby-switch --set ruby2.1
 
-- name: install librarian packages using gem
-  gem: name={{item}} state=present
+- name: install librarian packages using gem command. problem with gem module
+  command: gem install {{item}} --no-rdoc --no-ri
   with_items:
     - librarian-puppet
     - librarian-ansible
