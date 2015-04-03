@@ -32,13 +32,6 @@
 - name: set default ruby to 2.1
   command: ruby-switch --set ruby2.1
 
-- name: install librarian packages using gem command. problem with gem module
-  command: gem install {{item}} --no-rdoc --no-ri
-  with_items:
-    - librarian-puppet
-    - librarian-ansible
-    - librarian-chef
-
 - name: copy ansible user authorized_keys to cumulus user ssh authorized_keys. needed for prepare_cumulus_env role
   command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys
 
