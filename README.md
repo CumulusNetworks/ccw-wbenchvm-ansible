@@ -47,11 +47,6 @@ GPL v2
 5. Create new Pull Request.
 
 
-###Description of Folders for this git repo
-
-* tests: contains tests for each ansible module
-* library: contains ansible modules and are ready to be called by ``ansible`` or ``ansible-playbook``.
-
 ###Testing
 Run `./test_playbook.sh` to perform lint and syntax checks.
 
