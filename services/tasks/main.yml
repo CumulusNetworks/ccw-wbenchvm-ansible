@@ -4,13 +4,8 @@
 - name: install service packages
   apt: name={{item}} state=present
   with_items:
-    - ntp
     - isc-dhcp-server
     - bind9
-
-- name: configure ntp
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  notify: restart ntp
 
 - name: configure dhcpd.conf
   template: src=dhcpd.conf.j2 dest=/etc/dhcp/dhcpd.conf
@@ -20,5 +15,22 @@
   template: src=dhcpd.pools.j2 dest=/etc/dhcp/dhcpd.pools
   notify: restart dhcp
 
-- name: touch dhcpd.hosts file. Not clear how this will be managed
-  file: path=/etc/dhcp/dhcpd.hosts state=touch
+- name: configure dhcpd.hosts
+  template: src=dhcpd.hosts.j2 dest=/etc/dhcp/dhcpd.hosts
+  notify: restart dhcp
+
+- name: update named.conf.locals bind file
+  copy: src=named.conf.local dest=/etc/bind/named.conf.local
+  notify: restart bind9
+
+- name: create bind9 zone directory
+  file: path=/etc/bind/zones state=directory
+  notify: restart bind9
+
+- name: install db.lab.local zone
+  template: src=db.lab.local.j2 dest=/etc/bind/zones/db.lab.local
+  notify: restart bind9
+
+- name: install reverse db.lab.local zone file
+  template: src=db.0.168.192.in-addr.arpa.j2 dest=/etc/bind/zones/db.0.168.192.in-addr.arpa
+  notify: restart bind9

@@ -1,0 +1,9 @@
+# list extra packages here
+- name: install useful user packages
+  apt: name={{item}}
+  sudo: yes
+  with_items:
+    - vim-nox
+    - tree
+
+

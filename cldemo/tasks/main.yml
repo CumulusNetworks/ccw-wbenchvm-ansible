@@ -26,6 +26,18 @@
     - bundler
     - cldemo-wbench-base
     - git
+    - ruby2.1-dev
+    - ruby-switch
+
+- name: set default ruby to 2.1
+  command: ruby-switch --set ruby2.1
 
 - name: copy ansible user authorized_keys to cumulus user ssh authorized_keys. needed for prepare_cumulus_env role
   command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys
+
+- name: create dummy files so that cldemo installs
+  file: path=/var/www/{{item}} state=touch
+  with_items:
+    - topology.dot
+    - dummy.lic
+    - wbench.json
