@@ -1,3 +1,6 @@
+- name: install sources.list. may use apt-cacher if ubuntu_apt_server var is set
+  template: src=apt_sources.list.j2  dest=/etc/apt/sources.list
+
 - name: run apt-get update
   apt: update_cache=yes
 

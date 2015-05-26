@@ -2,7 +2,7 @@
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
 
 - name: add cldemo sources list
-  copy: src=cldemo.list dest=/etc/apt/sources.list.d/cldemo.list
+  template: src=cldemo.list.j2 dest=/etc/apt/sources.list.d/cldemo.list
 
 - name: add brightbox and ansible ppa
   apt_repository:  repo={{item}}
