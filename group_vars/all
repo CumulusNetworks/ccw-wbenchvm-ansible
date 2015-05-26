@@ -13,4 +13,4 @@ ntp_server: '1.cumulusnetworks.pool.ntp.org'
 
 wbench_hosts: {}
 
-cldemo-apt-server: 'cldemo.cumulusnetworks.com'
+cldemo_apt_server: 'cldemo.cumulusnetworks.com'
