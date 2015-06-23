@@ -46,13 +46,13 @@
     - wbench.json
 
 - name: copy onie install images to workbench
-  copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0666
+  copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0600
   with_fileglob:
     - /var/www/bootstrap/CumulusLinux*
     - /var/www/bootstrap/CumulusLicense*
 
 - name: symlink the CL images to onie-installer TODO allow user to pick an image
-  file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
+  file: src=/var/www/{{ item.original }} dest=/var/www/html/{{ item.target }} state=link
   with_items:
     - { original: 'CumulusLinux-2.5.1-amd64.bin', target: 'onie-installer-x86_64' }
     - { original: 'CumulusLinux-2.5.1-powerpc.bin', target: 'onie-installer-powerpc' }
