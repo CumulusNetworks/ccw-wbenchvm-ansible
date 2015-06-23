@@ -41,3 +41,10 @@
     - topology.dot
     - dummy.lic
     - wbench.json
+
+- name: copy onie install images to workbench
+  copy: src=/var/www/bootstrap/{{item}} dest=/var/www/{{item}} owner=cumulus group=cumulus mode=0666
+  with_items:
+    - onie-installer-powerpc.bin
+    - onie-installer-x86_64.bin
+    - license.lic
