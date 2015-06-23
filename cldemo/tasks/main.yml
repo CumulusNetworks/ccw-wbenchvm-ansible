@@ -48,8 +48,8 @@
 - name: copy onie install images to workbench
   copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0666
   with_fileglob:
-    - CumulusLinux*
-    - CumulusLicense*
+    - /var/www/bootstrap/CumulusLinux*
+    - /var/www/bootstrap/CumulusLicense*
 
 - name: symlink the CL images to onie-installer TODO allow user to pick an image
   file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
