@@ -46,7 +46,7 @@
     - wbench.json
 
 - name: copy onie install images to workbench
-  copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0600
+  copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0644
   with_fileglob:
     - /var/www/bootstrap/CumulusLinux*
     - /var/www/bootstrap/CumulusLicense*
