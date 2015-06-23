@@ -1,3 +1,6 @@
+- name: install apache2
+  apt: name=apache2 state=present
+
 - name: install cldemo apt-key
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
 
@@ -43,8 +46,14 @@
     - wbench.json
 
 - name: copy onie install images to workbench
-  copy: src=/var/www/bootstrap/{{item}} dest=/var/www/{{item}} owner=cumulus group=cumulus mode=0666
+  copy: src={{item}} dest=/var/www/{{item | basename}} owner=cumulus group=cumulus mode=0666
+  with_fileglob:
+    - CumulusLinux*
+    - CumulusLicense*
+
+- name: symlink the CL images to onie-installer TODO allow user to pick an image
+  file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
   with_items:
-    - onie-installer-powerpc.bin
-    - onie-installer-x86_64.bin
-    - license.lic
+    - { original: 'CumulusLinux-2.5.1-amd64.bin', target: 'onie-installer-x86_64' }
+    - { original: 'CumulusLinux-2.5.1-powerpc.bin', target: 'onie-installer-powerpc' }
+    - { original: 'CumulusLicense-v1', target: 'license.lic' }
