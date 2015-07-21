@@ -2,9 +2,6 @@
 
 The Cumulus Workbench VM Ansible Playbook is responsible for provisioning a pristine Ubuntu 14.04 VM into a workable management VM for a Cumulus Workbench reservation.
 
-This Cumulus Workbench VM provides an easy to install  chef or puppet server that can be used outside the Cumulus workbench environment
-for demonstrations and testing.
-
 This playbook may be used in a Vagrantfile to provision a Ubuntu Vagrant VM so a user can test and install Cumulus [cldemo packages](http://github.com/CumulusNetworks/cldemo).
 For more details on how to use cldemo packages, go to the [Cumulus Workbench Guide](https://support.cumulusnetworks.com/hc/en-us/articles/203005993-Cumulus-Workbench-User-Guide)
 ## Requirements:
