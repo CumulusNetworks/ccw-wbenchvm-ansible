@@ -12,3 +12,5 @@ dns_search2: 'cwb.cumulusnetworks.com'
 ntp_server: '1.cumulusnetworks.pool.ntp.org'
 
 wbench_hosts: {}
+cldemo_apt_server: 'cldemo.cumulusnetworks.com'
+ubuntu_apt_server: 'archive.ubuntu.com'
