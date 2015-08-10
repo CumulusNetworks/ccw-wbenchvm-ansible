@@ -6,6 +6,7 @@
     - vim-nox
     - tree
     - nano
+    - git
     - telnet
 
 - name: Download ccw wbenchvm tools
