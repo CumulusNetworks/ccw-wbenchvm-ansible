@@ -10,9 +10,8 @@
     - telnet
 
 - name: Download ccw wbenchvm tools
-  git: repo=https://github.com/cumulusnetworks/ccw-wbenchvm-tools.git dest=/usr/src/
+  git: repo=https://github.com/cumulusnetworks/ccw-wbenchvm-tools.git dest=/usr/src/ccw-wbenchvm-tools
 
 - name: symlink the cwng scripts
   file: src={{ item }} dest=/usr/local/bin/{{item | basename}} state=link
-  with_fileglob:
-    - /usr/src/ccw-wbenchvm-tools/cwng*
+  with_lines: ls /usr/src/ccw-wbenchvm-tools/cwng-*
