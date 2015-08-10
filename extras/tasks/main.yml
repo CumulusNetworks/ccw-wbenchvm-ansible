@@ -7,4 +7,11 @@
     - tree
     - nano
     - telnet
-    - ipmitool
+
+- name: Download ccw wbenchvm tools
+  git: repo=https://github.com/cumulusnetworks/ccw-wbenchvm-tools.git dest=/usr/src/
+
+- name: symlink the cwng scripts
+  file: src={{ item }} dest=/usr/local/bin/{{item | basename}} state=link
+  with_fileglob:
+    - /usr/src/ccw-wbenchvm-tools/cwng*
