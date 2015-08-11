@@ -1,6 +1,11 @@
 - name: install apache2
   apt: name=apache2 state=present
 
+- name: update apache2 config
+  copy: src=apache2.conf dest=/etc/apache2/sites-available/000-default.conf
+  notify: restart apache2
+
+
 - name: install cldemo apt-key
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
 
@@ -52,7 +57,7 @@
     - /var/www/bootstrap/CumulusLicense*
 
 - name: symlink the CL images to onie-installer TODO allow user to pick an image
-  file: src=/var/www/{{ item.original }} dest=/var/www/html/{{ item.target }} state=link
+  file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
   with_items:
     - { original: 'CumulusLinux-{{ cumulus_version }}-amd64.bin', target: 'onie-installer-x86_64' }
     - { original: 'CumulusLinux-{{ cumulus_version }}-powerpc.bin', target: 'onie-installer-powerpc' }
