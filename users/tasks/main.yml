@@ -3,6 +3,7 @@
         password="{{wbench_passwd}}"
         update_password=on_create
         generate_ssh_key=yes
+        shell='/bin/bash'
 
 - name: set wbench user user ability to run sudo with a passwd
   copy: content="{{wbench_user}} ALL=(ALL) NOPASSWD:ALL"
