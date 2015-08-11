@@ -16,3 +16,6 @@
   lineinfile: dest=/etc/rc.local regexp="iptables"
               insertbefore="exit 0"
               line="/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+
+- name: run rc.local to start nat forwarding
+  command: /bin/bash /etc/rc.local
