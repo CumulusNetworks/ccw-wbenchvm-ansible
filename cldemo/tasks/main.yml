@@ -64,9 +64,9 @@
   when: cumulus_version is defined
 
 - name: symlink the v1 license if we are using CL < 2.5.3
-  file: src=/var/www/CumulusLicense-v1 dest=/var/www/html/license.lic state=link
+  file: src=/var/www/CumulusLicense-v1 dest=/var/www/license.lic state=link
   when: cumulus_version is defined and cumulus_version  < '2.5.3'
 
 - name: symlink the v2 license if we are using CL >= 2.5.3
-  file: src=/var/www/CumulusLicense-v2 dest=/var/www/html/license.lic state=link
+  file: src=/var/www/CumulusLicense-v2 dest=/var/www/license.lic state=link
   when: cumulus_version is defined and cumulus_version  >= '2.5.3'
