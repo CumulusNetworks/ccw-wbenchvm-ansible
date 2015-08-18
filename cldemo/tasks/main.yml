@@ -27,14 +27,34 @@
 - name: run apt-get update
   apt: update_cache=yes
 
-- name: install cldemo base packages
+- name: install cldemo base packages 1
   apt: name={{ item }}
   with_items:
     - ruby2.1
+
+- name: install cldemo base packages 2
+  apt: name={{ item }}
+  with_items:
     - bundler
+
+- name: install cldemo base packages 3
+  apt: name={{ item }}
+  with_items:
     - cldemo-wbench-base
+
+- name: install cldemo base packages 4
+  apt: name={{ item }}
+  with_items:
     - git
+
+- name: install cldemo base packages 5
+  apt: name={{ item }}
+  with_items:
     - ruby2.1-dev
+
+- name: install cldemo base packages 6
+  apt: name={{ item }}
+  with_items:
     - ruby-switch
 
 - name: set default ruby to 2.1
