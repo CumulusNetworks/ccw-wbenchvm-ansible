@@ -44,7 +44,7 @@
 
 - name: make wbench use itself as DNS resolver
   copy: src=resolv.conf dest=/etc/resolv.conf
-  notify: restart bind9
+  notify: really restart bind9
 
-- name: pause and give bind time to restart
+- name: pause and let bind restart
   pause: seconds=10
