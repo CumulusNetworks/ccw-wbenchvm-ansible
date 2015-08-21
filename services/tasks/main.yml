@@ -37,3 +37,10 @@
 - name: install reverse db.lab.local zone file
   template: src=db.0.168.192.in-addr.arpa.j2 dest=/etc/bind/zones/db.0.168.192.in-addr.arpa
   notify: restart bind9
+
+- name: make wbench use itself as DNS resolver
+  copy: src=resolv.conf dest=/etc/resolv.conf
+
+- name: set up bind forwarding
+  template: src=named.conf.options.j2 dest=/etc/bind/named.conf.options
+  notify: restart bind9
