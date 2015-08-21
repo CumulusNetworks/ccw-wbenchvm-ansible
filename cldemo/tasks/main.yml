@@ -31,31 +31,15 @@
   apt: name={{ item }}
   with_items:
     - ruby2.1
+    - ruby2.1-dev
+    - ruby-switch
+    - bundler
+    - git
 
 - name: install cldemo base packages 2
   apt: name={{ item }}
   with_items:
-    - bundler
-
-- name: install cldemo base packages 3
-  apt: name={{ item }}
-  with_items:
     - cldemo-wbench-base
-
-- name: install cldemo base packages 4
-  apt: name={{ item }}
-  with_items:
-    - git
-
-- name: install cldemo base packages 5
-  apt: name={{ item }}
-  with_items:
-    - ruby2.1-dev
-
-- name: install cldemo base packages 6
-  apt: name={{ item }}
-  with_items:
-    - ruby-switch
 
 - name: set default ruby to 2.1
   command: ruby-switch --set ruby2.1
