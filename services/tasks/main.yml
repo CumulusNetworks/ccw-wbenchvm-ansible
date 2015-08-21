@@ -44,3 +44,6 @@
 - name: set up bind forwarding
   template: src=named.conf.options.j2 dest=/etc/bind/named.conf.options
   notify: restart bind9
+
+- name: pause and give bind time to restart
+  pause: seconds=10
