@@ -90,3 +90,8 @@
 - name: symlink the v2 license if we are using CL >= 2.5.3
   file: src=/var/www/CumulusLicense-v2 dest=/var/www/license.lic state=link
   when: cumulus_version is defined and cumulus_version  >= '2.5.3'
+
+- name: symlink the license again for each hostname
+  file: src=/var/www/license.lic dest=/var/www/{{ item.key }}.lic state=link
+  with_dict: "{{wbench_hosts}}"
+  when: cumulus_version is defined
