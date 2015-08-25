@@ -42,6 +42,7 @@
     - ruby2.1-dev
     - ruby-switch
     - git
+    - bundler
 
 - name: install cldemo base packages 2
   apt: name={{ item }}
@@ -50,12 +51,6 @@
 
 - name: set default ruby to 2.1
   command: ruby-switch --set ruby2.1
-
-- name: install the newest bundler
-  gem: name={{ item }} state=latest
-  with_items:
-    - bundler
-    - rake
 
 - name: copy ansible user authorized_keys to cumulus user ssh authorized_keys. needed for prepare_cumulus_env role
   command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys

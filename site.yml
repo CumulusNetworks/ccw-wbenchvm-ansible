@@ -10,9 +10,8 @@
       # put it in the next host definition
       - { role: extras , tags: 'extras' }
       - { role: cldemo, tags: 'cldemo' }
+      - { role: cldemo_tests, tags: 'cldemo_tests' }
   - hosts: all
     remote_user: cumulus
     roles:
-      - { role: cldemo_tests, tags: 'cldemo_tests' }
       - { role: vim_env, tags: 'vim_env' }
-
