@@ -47,6 +47,7 @@
   apt: name={{ item }}
   with_items:
     - cldemo-wbench-base
+    - cldemo-tests
 
 - name: set default ruby to 2.1
   command: ruby-switch --set ruby2.1
