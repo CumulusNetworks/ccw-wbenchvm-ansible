@@ -24,6 +24,14 @@
 - name: install puppet repo deb
   apt: deb=/tmp/puppet_install.deb
 
+- name: install curl
+  apt: name={{ item }}
+  with_items:
+    - curl
+
+- name: clean up apt-cacher ng
+  command: curl "http://mirror.cwb.cumulusnetworks.com:3142/acng-report.html?abortOnErrors=aOe&byPath=bP&byChecksum=bS&truncNow=tN&incomAsDamaged=iad&purgeNow=pN&doExpire=Start+Scan+and%2For+Expiration&calcSize=cs&asNeeded=an#bottom"
+
 - name: run apt-get update
   apt: update_cache=yes
 
