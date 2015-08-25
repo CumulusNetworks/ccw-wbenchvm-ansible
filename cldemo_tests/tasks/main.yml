@@ -3,6 +3,6 @@
        dest=/home/cumulus/cldemo-tests
 
 - name: bundle install in cldemo-tests directory as cumulus user
-  command: bundle install --path vendor/bundle
+  command: bundle install --without=test
   args:
       chdir: /home/cumulus/cldemo-tests
