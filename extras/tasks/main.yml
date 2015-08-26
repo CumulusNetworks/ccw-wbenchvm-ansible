@@ -8,6 +8,7 @@
     - nano
     - git
     - telnet
+    - sshpass
 
 - name: Download ccw wbenchvm tools
   git: repo=https://github.com/cumulusnetworks/ccw-wbenchvm-tools.git dest=/usr/src/ccw-wbenchvm-tools
