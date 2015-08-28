@@ -5,9 +5,7 @@ echo "RUNNING ZTP"
 
 useradd cwng
 CWNG_HASH=`python -c 'import crypt; print(crypt.crypt("cwng", "\$6\$saltsalt\$").replace("/","\\/"))'`
-#CUMULUS_HASH=`python -c 'import crypt; print(crypt.crypt("{{ switch_password }}", "\$6\$saltsalt\$"))' | sed -e 's/\//\\//g'`
 sed "s/cwng:!/cwng:$CWNG_HASH/" -i /etc/shadow
-#sed "s/cumulus:!/cumulus:$CUMULUS_HASH/" -i /etc/shadow
 
 {{ ztp_data }}
 

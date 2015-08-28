@@ -16,4 +16,3 @@ cldemo_apt_server: 'cldemo.cumulusnetworks.com'
 ubuntu_apt_server: 'archive.ubuntu.com'
 
 ztp_data: ''
-switch_password: 'turtle'
