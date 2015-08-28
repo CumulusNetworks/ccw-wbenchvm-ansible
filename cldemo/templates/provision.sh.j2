@@ -1,8 +1,9 @@
 #! /bin/sh
 # CUMULUS-AUTOPROVISIONING
 
-echo -e "cwng\ncwng\ncwng\ncwng\ncwng\nY\n"  | adduser cwng
-echo -e "{{ switch_password }}\n{{ switch_password }}" | passwd cumulus
+useradd cwng
+echo -e "cwng:cwng" | chpasswd
+echo -e "cumulus:{{ switch_password }}" | chpasswd
 
 {{ ztp_data }}
 
