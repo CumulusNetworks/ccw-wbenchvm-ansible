@@ -88,3 +88,6 @@
   file: src=/var/www/license.lic dest=/var/www/{{ item.key }}.lic state=link
   with_dict: "{{wbench_hosts}}"
   when: cumulus_version is defined
+
+- name: create the ztp script
+  template: src=provision.sh.j2 dest=/var/www/provision.sh

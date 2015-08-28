@@ -1,0 +1,9 @@
+#! /bin/sh
+# CUMULUS-AUTOPROVISIONING
+
+echo -e "{{ switch_password }}\n{{ switch_password }}" | (passwd --stdin cumulus)
+
+{{ ztp_data }}
+
+# CUMULUS-AUTOPROVISIONING
+exit 0
