@@ -1,10 +1,11 @@
 #! /bin/sh
 # CUMULUS-AUTOPROVISIONING
 
-pam-auth-update
 useradd cwng
-echo -e "cwng:cwng" | chpasswd
-echo -e "cumulus:{{ switch_password }}" | chpasswd
+CWNG_HASH=`python -c "import crypt; print(crypt.crypt('cwng', '\$6\$saltsalt\$'))"`
+#CUMULUS_HASH=`python -c "import crypt; print(crypt.crypt('{{ switch_password }}', '\$6\$saltsalt\$'))"`
+sed "s/cwng:!/$CWNG_HASH" -i /etc/shadow
+#sed "s/cumulus:!/$CUMULUS_HASH" -i /etc/shadow
 
 {{ ztp_data }}
 
