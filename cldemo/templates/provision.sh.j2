@@ -1,6 +1,7 @@
 #! /bin/sh
 # CUMULUS-AUTOPROVISIONING
 
+pam-auth-update
 useradd cwng
 echo -e "cwng:cwng" | chpasswd
 echo -e "cumulus:{{ switch_password }}" | chpasswd
