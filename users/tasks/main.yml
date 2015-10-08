@@ -12,7 +12,10 @@
         mode=0440
 
 - name: copy cumulus user's ssh stuff to root.
-  command: cp -r /home/{{ wbench_user}}/.ssh /root/.ssh
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa /root/.ssh/id_rsa
+
+- name: copy cumulus user's ssh stuff to root 2.
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
 
 - name: chown root ssh to root
   command: chown -R root /root/.ssh
