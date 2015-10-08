@@ -10,3 +10,9 @@
         dest="/etc/sudoers.d/10_{{wbench_user}}"
         validate="/usr/sbin/visudo -cf %s"
         mode=0440
+
+- name: copy cumulus user's ssh stuff to root.
+  command: cp -r /home/{{ wbench_user}}/.ssh /root/.ssh
+
+- name: chown root ssh to root
+  command: chown -R root /root/.ssh
