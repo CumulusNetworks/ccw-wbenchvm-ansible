@@ -16,4 +16,5 @@ wbench_hosts: {}
 cldemo_apt_server: 'cldemo.cumulusnetworks.com'
 ubuntu_apt_server: 'archive.ubuntu.com'
 
+do_ztp: true
 ztp_data: ''

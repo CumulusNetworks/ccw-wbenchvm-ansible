@@ -13,6 +13,7 @@ subnet {{ wbench_eth1_network }} netmask {{ wbench_eth1_mask }} {
   filename = "pxe/pxelinux.0";
   next-server {{ wbench_eth1_ip }};
   option default-url ="http://{{ wbench_eth1_ip}}/onie-installer";
+  {% if do_ztp %}
   option cumulus-provision-url "http://{{ wbench_eth1_ip}}/provision.sh";
+  {% endif %}
 }
-
