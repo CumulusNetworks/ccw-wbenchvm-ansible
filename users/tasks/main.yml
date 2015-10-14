@@ -11,8 +11,11 @@
         validate="/usr/sbin/visudo -cf %s"
         mode=0440
 
-- name: remove ubuntu user if it exists
-  user: name=ubuntu state=absent
+- name: copy cumulus user's ssh stuff to root.
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa /root/.ssh/id_rsa
 
-- name: generate ssh keys for ansible user (most likely root)
-  user: name={{ ansible_user_id}} generate_ssh_key=yes
+- name: copy cumulus user's ssh stuff to root 2.
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
+
+- name: chown root ssh to root
+  command: chown -R root /root/.ssh

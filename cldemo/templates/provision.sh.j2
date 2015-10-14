@@ -1,10 +1,13 @@
 #! /bin/sh
 # CUMULUS-AUTOPROVISIONING
 
-pam-auth-update
+echo "RUNNING ZTP"
+
 useradd cwng
-echo -e "cwng:cwng" | chpasswd
-echo -e "cumulus:{{ switch_password }}" | chpasswd
+CWNG_HASH=`python -c 'import crypt; print(crypt.crypt("cwng", "\$6\$saltsalt\$").replace("/","\\/"))'`
+sed "s/cwng:!/cwng:$CWNG_HASH/" -i /etc/shadow
+echo "cumulus ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cumulus
+echo "cwng ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cwng
 
 {{ ztp_data }}
 
