@@ -5,6 +5,10 @@
   copy: src=apache2.conf dest=/etc/apache2/sites-available/000-default.conf
   notify: restart apache2
 
+- name: update apache2 envvars
+  copy: src=apache2_envvars dest=/etc/apache2/envvars
+  notify: restart apache2
+
 - name: install cldemo apt-key
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
 
@@ -23,10 +27,11 @@
 - name: install puppet repo deb
   apt: deb=/tmp/puppet_install.deb
 
-- name: install curl
+- name: install curl and bash-completion
   apt: name={{ item }}
   with_items:
     - curl
+    - bash-completion
 
 - name: clean up apt-cacher ng
   command: curl "http://mirror.cwb.cumulusnetworks.com:3142/acng-report.html?abortOnErrors=aOe&byPath=bP&byChecksum=bS&truncNow=tN&incomAsDamaged=iad&purgeNow=pN&doExpire=Start+Scan+and%2For+Expiration&calcSize=cs&asNeeded=an#bottom"
