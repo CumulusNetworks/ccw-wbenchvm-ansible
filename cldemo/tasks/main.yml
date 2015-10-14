@@ -5,6 +5,9 @@
   copy: src=apache2.conf dest=/etc/apache2/sites-available/000-default.conf
   notify: restart apache2
 
+- name: update apache2 envvars
+  copy: src=apache2_envvars dest=/etc/apache2/envvars
+  notify: restart apache2
 
 - name: install cldemo apt-key
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
