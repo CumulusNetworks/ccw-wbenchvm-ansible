@@ -27,10 +27,11 @@
 - name: install puppet repo deb
   apt: deb=/tmp/puppet_install.deb
 
-- name: install curl and bash-completion
+- name: install curl, man, and bash-completion
   apt: name={{ item }}
   with_items:
     - curl
+    - man
     - bash-completion
 
 - name: clean up apt-cacher ng
