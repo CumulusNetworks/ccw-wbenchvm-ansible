@@ -1,2 +1,3 @@
 wbench_user: 'cumulus'
 wbench_passwd: '$6$rounds=40000$SrhUWyi2RIe5Z2o9$sv3DBTeMYTTGMNz6NC1gEsERWbirDcSPiyrNkCd0bJae5mMmgfqDKv1jo7Ta/eZCp9gF9X6SUbEa8Pz.Gp2LU/'
+create_key: yes
