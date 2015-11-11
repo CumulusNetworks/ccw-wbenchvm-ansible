@@ -11,7 +11,7 @@ options {
         // the all-0's placeholder.
 
         forwarders {
-                {{ ansible_eth0.ipv4.address.rsplit('.',1)[0] }}.224;
+                {{ dns_server }};
         };
 
         //========================================================================

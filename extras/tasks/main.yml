@@ -18,3 +18,5 @@
   with_items:
     - cwng-swpower
     - cwng-pxehelper
+    - cwng-mux
+    - cwng-mux-helper

@@ -5,6 +5,9 @@
   copy: src=apache2.conf dest=/etc/apache2/sites-available/000-default.conf
   notify: restart apache2
 
+- name: update apache2 envvars
+  copy: src=apache2_envvars dest=/etc/apache2/envvars
+  notify: restart apache2
 
 - name: install cldemo apt-key
   apt_key: url=http://cldemo.cumulusnetworks.com/stable/dists/cldemo/cldemo.key
@@ -33,6 +36,7 @@
 
 - name: clean up apt-cacher ng
   command: curl "http://mirror.cwb.cumulusnetworks.com:3142/acng-report.html?abortOnErrors=aOe&byPath=bP&byChecksum=bS&truncNow=tN&incomAsDamaged=iad&purgeNow=pN&doExpire=Start+Scan+and%2For+Expiration&calcSize=cs&asNeeded=an#bottom"
+  when: ubuntu_apt_server == 'mirror.cwb.cumulusnetworks.com'
 
 - name: run apt-get update
   apt: update_cache=yes
@@ -90,3 +94,6 @@
   file: src=/var/www/license.lic dest=/var/www/{{ item.key }}.lic state=link
   with_dict: "{{wbench_hosts}}"
   when: cumulus_version is defined
+
+- name: create the ztp script
+  template: src=provision.sh.j2 dest=/var/www/provision.sh

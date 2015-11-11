@@ -2,7 +2,7 @@
   user: name="{{wbench_user}}"
         password="{{wbench_passwd}}"
         update_password=on_create
-        generate_ssh_key=yes
+        generate_ssh_key="{{create_key}}"
         shell='/bin/bash'
 
 - name: set wbench user user ability to run sudo with a passwd
@@ -11,8 +11,22 @@
         validate="/usr/sbin/visudo -cf %s"
         mode=0440
 
-- name: remove ubuntu user if it exists
-  user: name=ubuntu state=absent
+- name: Ensure .ssh directory exists
+  file: path=/home/{{wbench_user}}/.ssh state=directory mode=0700
 
-- name: generate ssh keys for ansible user (most likely root)
-  user: name={{ ansible_user_id}} generate_ssh_key=yes
+- name: Use interal private key
+  copy: src=internal_private_key dest=/home/{{wbench_user}}/.ssh/id_rsa mode=0600
+  when: not create_key
+
+- name: Use interal public key
+  copy: src=internal_public_key dest=/home/{{wbench_user}}/.ssh/id_rsa.pub mode=0600
+  when: not create_key
+
+- name: copy cumulus user's ssh stuff to root.
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa /root/.ssh/id_rsa
+
+- name: copy cumulus user's ssh stuff to root 2.
+  command: cp /home/{{ wbench_user}}/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
+
+- name: chown root ssh to root
+  command: chown -R root /root/.ssh

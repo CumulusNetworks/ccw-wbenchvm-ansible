@@ -1,0 +1,15 @@
+#! /bin/sh
+# CUMULUS-AUTOPROVISIONING
+
+echo "RUNNING ZTP"
+
+useradd cwng
+CWNG_HASH=`python -c 'import crypt; print(crypt.crypt("cwng", "\$6\$saltsalt\$").replace("/","\\/"))'`
+sed "s/cwng:!/cwng:$CWNG_HASH/" -i /etc/shadow
+echo "cumulus ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cumulus
+echo "cwng ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/10_cwng
+
+{{ ztp_data }}
+
+# CUMULUS-AUTOPROVISIONING
+exit 0
