@@ -13,7 +13,7 @@ $TTL  604800
 ;
 @   IN  NS  .
 ;
-1   IN  PTR wbench.lab.local.
+1   IN  PTR {{ wbench_hostname }}.lab.local.
 {% for hostname, dnsattr in wbench_hosts.iteritems() %}
 {{ dnsattr.ip.split('.')[-1] }} IN  PTR {{hostname}}.lab.local.
 {% endfor %}

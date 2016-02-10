@@ -14,8 +14,7 @@ $TTL  604800
 ;
 @   IN  NS  .
 ;
-wbench    IN  A 192.168.0.1
+{{ wbench_hostname }}    IN  A {{ wbench_eth1_ip }}
 {% for hostname, dnsattr in wbench_hosts.iteritems() %}
 {{hostname}}  IN  A {{dnsattr.ip}}
 {% endfor %}
-

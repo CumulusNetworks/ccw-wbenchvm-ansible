@@ -1,6 +1,6 @@
 127.0.0.1   localhost
 
-192.168.0.1 wbench.lab.local wbench
+192.168.0.1 {{ wbench_hostname }}.lab.local {{ wbench_hostname }}
 
 {% for hostname, dnsattr in wbench_hosts.iteritems() %}
 {{dnsattr.ip}} {{hostname}}.lab.local {{hostname}}
