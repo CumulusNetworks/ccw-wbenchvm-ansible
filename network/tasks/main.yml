@@ -9,7 +9,7 @@
   template: src=hosts.j2 dest=/etc/hosts
 
 - name: set hostname
-  hostname:  name=wbench
+  hostname:  name={{ wbench_hostname }}
 
 - name: add iptables NAT statement to rc.local
   lineinfile: dest=/etc/rc.local regexp="iptables"
