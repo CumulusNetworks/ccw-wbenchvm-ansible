@@ -94,6 +94,9 @@
   file: src=/var/www/license.lic dest=/var/www/{{ item.key }}.lic state=link
   with_dict: "{{wbench_hosts}}"
   when: cumulus_version is defined
+  
+- name: put rename script in /var/www
+  copy: src=rename_eth_swp dest=/var/www/rename_eth_swp
 
 - name: create the ztp script
   template: src=provision.sh.j2 dest=/var/www/provision.sh
