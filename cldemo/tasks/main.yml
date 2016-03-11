@@ -75,7 +75,6 @@
   with_fileglob:
     - /var/www/bootstrap/CumulusLinux*
     - /var/www/bootstrap/CumulusLicense*
-  when: cumulus_version is defined
 
 - name: symlink the CL images to onie-installer TODO allow user to pick an image
   file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
