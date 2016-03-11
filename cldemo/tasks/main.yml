@@ -61,6 +61,7 @@
 
 - name: copy ansible user authorized_keys to cumulus user ssh authorized_keys. needed for prepare_cumulus_env role
   command: cp {{ ansible_env.PWD }}/.ssh/authorized_keys /home/cumulus/.ssh/authorized_keys
+  when: ansible_env.PWD != '/home/cumulus'
 
 - name: create dummy files so that cldemo installs
   file: path=/var/www/{{item}} state=touch
@@ -74,6 +75,7 @@
   with_fileglob:
     - /var/www/bootstrap/CumulusLinux*
     - /var/www/bootstrap/CumulusLicense*
+  when: cumulus_version is defined
 
 - name: symlink the CL images to onie-installer TODO allow user to pick an image
   file: src=/var/www/{{ item.original }} dest=/var/www/{{ item.target }} state=link
